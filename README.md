@@ -1,24 +1,53 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+| Column              | Type      | Options                        |
+| ------------------- | --------- | ------------------------------ |
+| nickname            | string    | null: false, unique: true      |
+| email               | string    | null: false, unique: true      |
+| encrypted_password  | string    | null: false                    |
+| last_name           | string    | null: false                    |
+| first_name          | string    | null: false                    |
+| last_name_kana      | string    | null: false                    |
+| first_name_kana     | string    | null: false                    |
+| birth_date    　　　 | string    | null: false                    |
 
-* Ruby version
 
-* System dependencies
 
-* Configuration
+## itemsテーブル
 
-* Database creation
+| Column              | Type      | Options                        |
+| ------------------- | --------- | ------------------------------ |
+| item_name           | string    | null: false                    |
+| item_instruction    | text      | null: false                    |
+| category            | string    | null: false                    |
+| condition           | string    | null: false                    |
+| shipping_fee_bearer | string    | null: false                    |
+| shipping_area       | string    | null: false                    |
+| shipping_days       | string    | null: false                    |
+| user                | reference | null: fales,foreign_key: true  |
 
-* Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## purchasesテーブル
 
-* Deployment instructions
+| Column              | Type      | Options                        |
+| ------------------- | --------- | ------------------------------ |
+| user                | reference | null: fales,foreign_key: true  |
+| item                | reference | null: fales,foreign_key: true  |
+| shipping            | reference | null: fales,foreign_key: true  |
 
-* ...
+
+
+
+## shippingsテーブル
+
+| Column              | Type      | Options                        |
+| ------------------- | --------- | ------------------------------ |
+| postal_code         | string    | null: false                    |
+| prefectures         | string    | null: fales,                   |
+| city                | string    | null: fales,                   |
+| address             | string    | null: false                    |
+| building_name       | string    | null: false                    |
+| telephone           | string    | null: false                    |
