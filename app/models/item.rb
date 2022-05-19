@@ -19,6 +19,7 @@ class Item < ApplicationRecord
     validates :shipping_area_id
     validates :shipping_days_id
     validates :price
+    validates :image
   end
 
   validates :category_id, numericality: { other_than: 1, message: "can't be blank"}
