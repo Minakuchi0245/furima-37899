@@ -91,7 +91,7 @@ RSpec.describe User, type: :model do
       end
 
       it '数字のみのパスワードでは登録できない' do
-        @user.password = '111111'
+        @user.password ='111111'
         @user.password_confirmation = '111111'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is invalid. Include both letters and numbers')
@@ -171,6 +171,7 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Birth date can't be blank")
       end
+
     end
   end
 end
