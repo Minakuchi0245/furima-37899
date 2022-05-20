@@ -130,6 +130,13 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping days can't be blank")
       end
+
+      it "user_idが紐づいてなければ登録できない" do
+        @item.user_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include
+      end
+
     end
   end
 end
