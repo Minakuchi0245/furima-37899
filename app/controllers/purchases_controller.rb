@@ -1,6 +1,6 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!, except: :index
-  before_action :purchase_params
+  before_action :set_item, only:[:index, :create]
   before_action :buy_block_logout, :buy_block_user, :buy_block_purchaser
 
   def index
@@ -8,6 +8,7 @@ class PurchasesController < ApplicationController
   end
 
   def create
+
     @purchase_shipping = PurchaseShipping.new(purchase_params)
 
     if @purchase_shipping.valid?
@@ -23,11 +24,11 @@ class PurchasesController < ApplicationController
 
   def purchase_params
     params.require(:purchase_shipping).permit(:postal_code, :prefectures_id, :city, :address, :building_name, :telephone).merge(
-      item_id: @item_id, user_id: current_user.id, token: params[:token]
+      item_id: params[:item_id], user_id: current_user.id, token: params[:token]
     )
   end
 
-  def purchase_params
+  def set_item
     @item = Item.find(params[:item_id])
   end
 
