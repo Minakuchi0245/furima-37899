@@ -104,6 +104,12 @@ RSpec.describe PurchaseShipping, type: :model do
         expect(@purchase_shipping.errors.full_messages).to include("Telephone PhoneNumber must be 10or11 digit Half-width numbers")
       end
 
+      it 'トークンが空だと保存できないこと' do
+        @purchase_shipping.token = ''
+        @purchase_shipping.valid?
+        expect(@purchase_shipping.errors.full_messages).to include("Token can't be blank")
+      end
+
     end
   end
 
