@@ -9,8 +9,7 @@ RSpec.describe PurchaseShipping, type: :model do
 
   describe '配送先情報の保存' do
     context '配送先情報の保存ができる時' do
-
-      it "全ての配送先情報が存在すれば登録できる" do
+      it '全ての配送先情報が存在すれば登録できる' do
         expect(@purchase_shipping).to be_valid
       end
 
@@ -33,11 +32,9 @@ RSpec.describe PurchaseShipping, type: :model do
         @purchase_shipping.telephone = '1234567891'
         expect(@purchase_shipping).to be_valid
       end
-
     end
 
     context '配送先情報の保存ができない時' do
-
       it 'user_idが空だと保存できない' do
         @purchase_shipping.user_id = ''
         @purchase_shipping.valid?
@@ -53,7 +50,8 @@ RSpec.describe PurchaseShipping, type: :model do
       it '郵便番号が空だと保存できないこと' do
         @purchase_shipping.postal_code = ''
         @purchase_shipping.valid?
-        expect(@purchase_shipping.errors.full_messages).to include("Postal code can't be blank", "Postal code is invalid. Include hyphen(-)")
+        expect(@purchase_shipping.errors.full_messages).to include("Postal code can't be blank",
+                                                                   'Postal code is invalid. Include hyphen(-)')
       end
 
       it '郵便番号にハイフンがないと保存できないこと' do
@@ -65,7 +63,7 @@ RSpec.describe PurchaseShipping, type: :model do
       it '郵便番号が全角だと保存できないこと' do
         @purchase_shipping.postal_code = '１２３４-５６７'
         @purchase_shipping.valid?
-        expect(@purchase_shipping.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@purchase_shipping.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
 
       it '都道府県が「---」だと保存できないこと' do
@@ -73,7 +71,7 @@ RSpec.describe PurchaseShipping, type: :model do
         @purchase_shipping.valid?
         expect(@purchase_shipping.errors.full_messages).to include("Prefectures can't be blank")
       end
-      
+
       it '市区町村が空だと保存できないこと' do
         @purchase_shipping.city = ''
         @purchase_shipping.valid?
@@ -95,13 +93,13 @@ RSpec.describe PurchaseShipping, type: :model do
       it '電話番号にハイフンがあると保存できないこと' do
         @purchase_shipping.telephone = '090-1234-5678'
         @purchase_shipping.valid?
-        expect(@purchase_shipping.errors.full_messages).to include("Telephone PhoneNumber must be 10or11 digit Half-width numbers")
+        expect(@purchase_shipping.errors.full_messages).to include('Telephone PhoneNumber must be 10or11 digit Half-width numbers')
       end
 
       it '電話番号が12桁以上あると保存できないこと' do
-        @purchase_shipping.telephone = 123456789123
+        @purchase_shipping.telephone = 123_456_789_123
         @purchase_shipping.valid?
-        expect(@purchase_shipping.errors.full_messages).to include("Telephone PhoneNumber must be 10or11 digit Half-width numbers")
+        expect(@purchase_shipping.errors.full_messages).to include('Telephone PhoneNumber must be 10or11 digit Half-width numbers')
       end
 
       it 'トークンが空だと保存できないこと' do
@@ -109,8 +107,6 @@ RSpec.describe PurchaseShipping, type: :model do
         @purchase_shipping.valid?
         expect(@purchase_shipping.errors.full_messages).to include("Token can't be blank")
       end
-
     end
   end
-
 end
