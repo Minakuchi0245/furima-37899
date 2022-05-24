@@ -3,15 +3,16 @@ class PurchasesController < ApplicationController
 
   def index
     @item = Item.find(params[:item_id])
-    @purchase_shipping_address = PurchaseShippingAddress.new
+    @purchase_shipping = PurchaseShipping.new
   end
   
   def create
     @item = Item.find(params[:item_id])
-    @purchase_shipping_address = PurchaseShippingAddress.new(purchase_params)
 
-    if @purchase_shipping_address.valid?
-      @purchase_shipping_address.save
+    @purchase_shipping = PurchaseShipping.new(purchase_params)
+
+    if @purchase_shipping.valid?
+      @purchase_shipping.save
       redirect_to root_path 
     else
       render :index
@@ -22,7 +23,7 @@ class PurchasesController < ApplicationController
   private
   
     def purchase_params
-      params.permit(:shipping_address).permit(:postal_code, :prefectures_id, :city, :address, :building_name, :telephone).merge(user_id: current_user.id, item_id: @item.id)
+      params.require(:purchase_shipping).permit(:postal_code, :prefectures_id, :city, :address, :building_name, :telephone).merge(item_id: params[:item_id], user_id: current_user.id)
     end
   
 end
