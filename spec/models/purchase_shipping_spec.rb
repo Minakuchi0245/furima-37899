@@ -96,6 +96,12 @@ RSpec.describe PurchaseShipping, type: :model do
         expect(@purchase_shipping.errors.full_messages).to include('Telephone PhoneNumber must be 10or11 digit Half-width numbers')
       end
 
+      it '電話番号が9桁以下だと保存できないこと' do
+        @purchase_shipping.telephone = 123_456_789
+        @purchase_shipping.valid?
+        expect(@purchase_shipping.errors.full_messages).to include('Telephone PhoneNumber must be 10or11 digit Half-width numbers')
+      end
+
       it '電話番号が12桁以上あると保存できないこと' do
         @purchase_shipping.telephone = 123_456_789_123
         @purchase_shipping.valid?
