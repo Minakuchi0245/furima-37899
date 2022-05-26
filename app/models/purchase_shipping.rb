@@ -13,10 +13,10 @@ class PurchaseShipping
     validates :token
   end
 
-  validates :prefectures_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
+  validates :prefectures_id, numericality: { other_than: 1, message: "を選択してください" }
+  validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'は無効です ハイフン(-)を含めてください' }
   validates :telephone,
-            format: { with: /\A[0-9]+\z/, with: /\A\d{10,11}\z/, message: 'PhoneNumber must be 10or11 digit Half-width numbers' }
+            format: { with: /\A[0-9]+\z/, with: /\A\d{10,11}\z/, message: 'は10桁or11桁の数値を入力してください' }
 
   def save
     purchase = Purchase.create(user_id: user_id, item_id: item_id)
