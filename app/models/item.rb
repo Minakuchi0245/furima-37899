@@ -22,11 +22,11 @@ class Item < ApplicationRecord
     validates :image
   end
 
-  validates :category_id, numericality: { other_than: 1, message: "を選択してください" }
-  validates :condition_id, numericality: { other_than: 1, message: "を選択してください" }
-  validates :shipping_charge_id, numericality: { other_than: 1, message: "を選択してください" }
-  validates :shipping_area_id, numericality: { other_than: 1, message: "を選択してください" }
-  validates :shipping_days_id, numericality: { other_than: 1, message: "を選択してください" }
+  validates :category_id, numericality: { other_than: 1, message: 'を選択してください' }
+  validates :condition_id, numericality: { other_than: 1, message: 'を選択してください' }
+  validates :shipping_charge_id, numericality: { other_than: 1, message: 'を選択してください' }
+  validates :shipping_area_id, numericality: { other_than: 1, message: 'を選択してください' }
+  validates :shipping_days_id, numericality: { other_than: 1, message: 'を選択してください' }
   validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 },
                     format: { with: /\A[0-9]+\z/ }
 end

@@ -1,6 +1,6 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!, except: :index
-  before_action :set_item, only:[:index, :create]
+  before_action :set_item, only: [:index, :create]
   before_action :buy_block_logout, :buy_block_user, :buy_block_purchaser
 
   def index
@@ -8,7 +8,6 @@ class PurchasesController < ApplicationController
   end
 
   def create
-
     @purchase_shipping = PurchaseShipping.new(purchase_params)
 
     if @purchase_shipping.valid?
